@@ -57,7 +57,7 @@ $accessToken = json_decode($res->getBody(), true)['access_token'];
 
 $tokenInfo = $t->getAccessToken($accessToken);
 
-echo $tokenInfo;
+var_dump($tokenInfo);
 /*
 //curl -X POST -d "client_id=4b4df1cf334904d81d1271dbc3fe0a9829376ca5eb63a3295a82fe0067da1e16&client_secret=003a99ac77be058831c744950303344daeed03a454702bd073f5df79ae18d87e&grant_type=password&username=hailang@outlook.com&password=a06748b9c7ff" -Ss https://mastodon.social/oauth/token
 
