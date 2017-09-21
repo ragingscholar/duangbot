@@ -33,14 +33,16 @@ $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
     ]
 ]);
 
+print_r($res->getBody());
+
 switch ($res->getStatusCode())
 {
     case '500':
-        throw \Exception("The remote server has encountered unexpected error");
+        throw new \Exception("The remote server has encountered unexpected error");
     case '301':
-        throw \Exception("The username or password supplied in the config is not valid");
+        throw new \Exception("The username or password supplied in the config is not valid");
     default:
-        throw \Exception("UNKNOWN error: " . $res->getStatusCode());
+        throw new \Exception("UNKNOWN error: " . $res->getStatusCode());
     case '200':
         break;
 }
