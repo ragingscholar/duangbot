@@ -25,7 +25,8 @@ $t->setCredentials($tokenInfo);
 $token_info = $t->getAccessToken("7c47d0c636314a1dff21reryyy5edf91884856dc0f78148f848d475136");
 
 $message = "";
-for ($i = 0; $i < date("h"); i++)
+$currentHour = data("h");
+for ($i = 0; $i < $currentHour; i+=1)
 {
     $message = $message . 'duang~';
 }
