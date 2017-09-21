@@ -25,16 +25,17 @@ $auth_url = $t->getAuthUrl();
 
 $client = new \GuzzleHttp\Client();
 $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
+    'allow_redirects' => false,
     'form_params' => [
         'client_id' => $tokenInfo['client_id'],
         'client_secret' => $tokenInfo['client_secret'],
         'grant_type' => 'password',
         'username' => USERNAME,
         'password' => PASSWORD,
-    ]
+    ],
 ]);
 
-print_r($res->getBody());
+//echo $res->getBody();
 
 switch ($res->getStatusCode())
 {
@@ -50,12 +51,12 @@ switch ($res->getStatusCode())
 
 
 $accessToken = json_decode($res->getBody(), true)['access_token'];
-print_r(json_decode($res->getBody(), true));
-print_r($accessToken);
+//print_r(json_decode($res->getBody(), true));
+//print_r($accessToken);
 
 $tokenInfo = $t->getAccessToken($accessToken);
 
-print_r($tokenInfo);
+echo $tokenInfo;
 /*
 //curl -X POST -d "client_id=4b4df1cf334904d81d1271dbc3fe0a9829376ca5eb63a3295a82fe0067da1e16&client_secret=003a99ac77be058831c744950303344daeed03a454702bd073f5df79ae18d87e&grant_type=password&username=hailang@outlook.com&password=a06748b9c7ff" -Ss https://mastodon.social/oauth/token
 
