@@ -23,11 +23,13 @@ if (!file_exists(TOKENFILE))
 }
 $tokenInfo = unserialize(file_get_contents(TOKENFILE));
 $t->setCredentials($tokenInfo);
+$auth_url = $t->getAuthUrl();
+echo $auth_url;
+die();
 $token_info = $t->getAccessToken("7c47d0c636314a1dff21reryyy5edf91884856dc0f78148f848d475136");
 
 $message = "";
 $currentHour = (int)date("h");
-var_dump((int)$currentHour);
 for ($i = 0; $i < $currentHour; $i++)
 {
     $message = $message . 'duang~';
