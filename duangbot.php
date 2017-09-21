@@ -33,7 +33,7 @@ $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
     ]
 ]);
 
-$accessToken = json_decode($res, true)['access_token'];
+$accessToken = json_decode($res->getBody(), true)['access_token'];
 $tokenInfo = $t->getAccessToken($accessToken);
 
 print_r($tokenInfo);
