@@ -25,7 +25,9 @@ if (!file_exists(TOKENFILE))
 $tokenInfo = $t->createApp(NAME, URL);
 var_dump($tokenInfo);
 $t->setCredentials($tokenInfo);
-//$auth_url = $t->getAuthUrl();
+$auth_url = $t->getAuthUrl();
+var_dump($auth_url);
+die();
 
 $client = new \GuzzleHttp\Client();
 $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
@@ -33,7 +35,7 @@ $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
     'form_params' => [
         'client_id' => $tokenInfo['client_id'],
         'client_secret' => $tokenInfo['client_secret'],
-        'grant_type' => 'password',
+        'grant_type' => 'authorization_code',
         'username' => USERNAME,
         'password' => PASSWORD,
     ],
