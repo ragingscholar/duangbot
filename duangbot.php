@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL);
+date_default_timezone_set('PRC');
 
 require_once("./vendor/autoload.php");
 
@@ -25,16 +26,14 @@ $t->setCredentials($tokenInfo);
 $token_info = $t->getAccessToken("7c47d0c636314a1dff21reryyy5edf91884856dc0f78148f848d475136");
 
 $message = "";
-//$currentHour = data("h");
-for ($i = 0; $i < date("h"); $i++)
+$currentHour = (int)date("h");
+var_dump((int)$currentHour);
+for ($i = 0; $i < $currentHour; $i++)
 {
     $message = $message . 'duang~';
 }
-echo $message;
-/*
 $status = $t->authenticate(USERNAME, PASSWORD)
-            ->postStatus("A small step for a bot, a great advance for the all of us.");
-            */
+            ->postStatus($message);
 //$auth_url = $t->getAuthUrl();
 
 /*
