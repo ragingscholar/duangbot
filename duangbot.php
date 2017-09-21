@@ -9,6 +9,7 @@ const URL = "http://cmx.im";
 const PROTOCOL = "https";
 const DOMAIN = "cmx.im";
 const TOKENFILE = "token";
+const AUTHCODE = "aaef67f955b7a05b37f978772185b148426befc6f6388ff0f59b077f0b8bdd81";
 const USERNAME = "duangbot@cmx.im";
 const PASSWORD = "a06748b9c7ff";
 const APIPOST = "/api/v1/statuses";
@@ -23,10 +24,13 @@ if (!file_exists(TOKENFILE))
 }
 $tokenInfo = unserialize(file_get_contents(TOKENFILE));
 $t->setCredentials($tokenInfo);
+
+/*
 $auth_url = $t->getAuthUrl();
 echo $auth_url;
 die();
-$token_info = $t->getAccessToken("7c47d0c636314a1dff21reryyy5edf91884856dc0f78148f848d475136");
+*/
+$token_info = $t->getAccessToken(AUTHCODE);
 
 $message = "";
 $currentHour = (int)date("h");
