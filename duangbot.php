@@ -10,24 +10,19 @@ const DOMAIN = "cmx.im";
 const TOKENFILE = "token";
 const USERNAME = "duangbot@cmx.im";
 const PASSWORD = "a06748b9c7ff";
+const APIPOST = "/api/v1/statuses";
 
 $t = new \theCodingCompany\Mastodon();
 $t->setMastodonDomain(DOMAIN);
 
-/*
 if (!file_exists(TOKENFILE))
 {
     $tokenInfo = $t->createApp(NAME, URL);
     file_put_contents(TOKENFILE, serialize($tokenInfo));
 }
-*/
-//$tokenInfo = unserialize(file_get_contents(TOKENFILE));
-$tokenInfo = $t->createApp(NAME, URL);
-var_dump($tokenInfo);
-$t->setCredentials($tokenInfo);
-$auth_url = $t->getAuthUrl();
-var_dump($auth_url);
-die();
+$tokenInfo = unserialize(file_get_contents(TOKENFILE));
+//$t->setCredentials($tokenInfo);
+//$auth_url = $t->getAuthUrl();
 
 $client = new \GuzzleHttp\Client();
 $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
@@ -35,13 +30,11 @@ $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
     'form_params' => [
         'client_id' => $tokenInfo['client_id'],
         'client_secret' => $tokenInfo['client_secret'],
-        'grant_type' => 'authorization_code',
+        'grant_type' => 'password',
         'username' => USERNAME,
         'password' => PASSWORD,
     ],
 ]);
-
-//echo $res->getBody();
 
 switch ($res->getStatusCode())
 {
@@ -57,13 +50,18 @@ switch ($res->getStatusCode())
 
 
 $accessToken = json_decode($res->getBody(), true)['access_token'];
-//print_r(json_decode($res->getBody(), true));
-//print_r($accessToken);
 
-var_dump($tokenInfo);
-$tokenInfo = $t->getAccessToken($accessToken);
+//$tokenInfo = $t->getAccessToken($accessToken);
+//$tokenInfo['access_token'] = $accessToken;
 
-var_dump($tokenInfo);
+$res = $client->request('POST', PROTOCOL . '://' . DOMAIN . APIPOST, [
+    'headers' => [
+        'Authorization' => 'Bearer ' . $accessToken,
+    ],
+    'form_params' => [
+        'status' => 'This is a new duang bot',
+    ],
+])
 /*
 //curl -X POST -d "client_id=4b4df1cf334904d81d1271dbc3fe0a9829376ca5eb63a3295a82fe0067da1e16&client_secret=003a99ac77be058831c744950303344daeed03a454702bd073f5df79ae18d87e&grant_type=password&username=hailang@outlook.com&password=a06748b9c7ff" -Ss https://mastodon.social/oauth/token
 
