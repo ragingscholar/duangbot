@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 
 require_once("./vendor/autoload.php");
 
@@ -33,13 +34,6 @@ $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
     ]
 ]);
 
-echo $res->getStatusCode();
-// 200
-echo $res->getHeaderLine('content-type');
-// 'application/json; charset=utf8'
-echo $res->getBody();
-
-/*
 print_r($res->getBody());
 
 switch ($res->getStatusCode())
