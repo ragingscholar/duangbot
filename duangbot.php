@@ -8,7 +8,7 @@ const PROTOCOL = "https";
 const DOMAIN = "cmx.im";
 const TOKENFILE = "token";
 const USERNAME = "duangbot@cmx.im";
-const PASSWORD = "06748b9c7ff";
+const PASSWORD = "a06748b9c7ff";
 
 $t = new \theCodingCompany\Mastodon();
 $t->setMastodonDomain(DOMAIN);
