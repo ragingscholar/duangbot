@@ -14,13 +14,15 @@ const PASSWORD = "a06748b9c7ff";
 $t = new \theCodingCompany\Mastodon();
 $t->setMastodonDomain(DOMAIN);
 
+/*
 if (!file_exists(TOKENFILE))
 {
     $tokenInfo = $t->createApp(NAME, URL);
     file_put_contents(TOKENFILE, serialize($tokenInfo));
 }
-
-$tokenInfo = unserialize(file_get_contents(TOKENFILE));
+*/
+//$tokenInfo = unserialize(file_get_contents(TOKENFILE));
+$tokenInfo = $t->createApp(NAME, URL);
 var_dump($tokenInfo);
 $t->setCredentials($tokenInfo);
 //$auth_url = $t->getAuthUrl();
