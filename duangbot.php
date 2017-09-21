@@ -21,7 +21,8 @@ if (!file_exists(TOKENFILE))
 }
 
 $tokenInfo = unserialize(file_get_contents(TOKENFILE));
-$auth_url = $t->getAuthUrl();
+$t->setCredentials($tokenInfo);
+//$auth_url = $t->getAuthUrl();
 
 $client = new \GuzzleHttp\Client();
 $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
