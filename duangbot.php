@@ -21,6 +21,7 @@ if (!file_exists(TOKENFILE))
 }
 
 $tokenInfo = unserialize(file_get_contents(TOKENFILE));
+var_dump($tokenInfo);
 $t->setCredentials($tokenInfo);
 //$auth_url = $t->getAuthUrl();
 
