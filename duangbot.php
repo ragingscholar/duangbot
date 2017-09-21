@@ -55,6 +55,7 @@ $accessToken = json_decode($res->getBody(), true)['access_token'];
 //print_r(json_decode($res->getBody(), true));
 //print_r($accessToken);
 
+var_dump($tokenInfo);
 $tokenInfo = $t->getAccessToken($accessToken);
 
 var_dump($tokenInfo);
