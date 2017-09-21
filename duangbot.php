@@ -23,7 +23,7 @@ $tokenInfo = unserialize(file_get_contents(TOKENFILE));
 $auth_url = $t->getAuthUrl();
 
 $client = new \GuzzleHttp\Client();
-$res = $client->request('POST', PROTOCTOL . '://' . DOMAIN . '/oauth/token', [
+$res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
     'form_params' => [
         'client_id' => $tokenInfo['client_id'],
         'client_secret' => $tokenInfo['client_secret'],
