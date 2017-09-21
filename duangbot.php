@@ -24,8 +24,16 @@ $tokenInfo = unserialize(file_get_contents(TOKENFILE));
 $t->setCredentials($tokenInfo);
 $token_info = $t->getAccessToken("7c47d0c636314a1dff21reryyy5edf91884856dc0f78148f848d475136");
 
+$message = "";
+for ($i = 0; $i < date("h"); i++)
+{
+    $message = $message . 'duang~';
+}
+echo $message;
+/*
 $status = $t->authenticate(USERNAME, PASSWORD)
             ->postStatus("A small step for a bot, a great advance for the all of us.");
+            */
 //$auth_url = $t->getAuthUrl();
 
 /*
