@@ -8,7 +8,7 @@ const PROTOCOL = "https";
 const DOMAIN = "cmx.im";
 const TOKENFILE = "token";
 const USERNAME = "duangbot@cmx.im";
-const PASSWORD = "a06748b9c7ff";
+const PASSWORD = "06748b9c7ff";
 
 $t = new \theCodingCompany\Mastodon();
 $t->setMastodonDomain(DOMAIN);
@@ -33,7 +33,23 @@ $res = $client->request('POST', PROTOCOL . '://' . DOMAIN . '/oauth/token', [
     ]
 ]);
 
+switch ($res->getStatusCode())
+{
+    case '500':
+        throw \Exception("The remote server has encountered unexpected error");
+    case '301':
+        throw \Exception("The username or password supplied in the config is not valid");
+    default:
+        throw \Exception("UNKNOWN error: " . $res->getStatusCode());
+    case '200':
+        break;
+}
+
+
 $accessToken = json_decode($res->getBody(), true)['access_token'];
+print_r(json_decode($res->getBody(), true));
+print_r($accessToken);
+
 $tokenInfo = $t->getAccessToken($accessToken);
 
 print_r($tokenInfo);
