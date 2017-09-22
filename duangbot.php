@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 date_default_timezone_set('PRC');
 
-require_once("./vendor/autoload.php");
+require_once("vendor/autoload.php");
 
 const NAME = "DuangBot";
 const URL = "http://cmx.im";
@@ -11,7 +11,7 @@ const DOMAIN = "cmx.im";
 const TOKENFILE = "token";
 const AUTHCODE = "aaef67f955b7a05b37f978772185b148426befc6f6388ff0f59b077f0b8bdd81";
 const USERNAME = "duangbot@cmx.im";
-const PASSWORD = "a06748b9c7ff";
+const PASSWORD = "yourpassword";
 const APIPOST = "/api/v1/statuses";
 
 $t = new \theCodingCompany\Mastodon();
